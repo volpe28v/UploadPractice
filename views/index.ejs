@@ -5,6 +5,7 @@
     <title><%= title %></title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/upload.css' />
   </head>
   <body>
     <div class="navbar navbar-default navbar-fixed-top hidden-xs" role="navigation">
@@ -13,44 +14,25 @@
  
     <h1>通常のpost</h1>
     <form method="post" enctype="multipart/form-data" action="/upload" class="form-inline">
-      <input type="file" name="thumbnail">
+      <input type="file" name="file">
       <input type="submit">
     </form>
 
-    <h2>Ajax</h2>
+    <h1>Ajax</h1>
     <form id="ajaxform">
-      <input id="file" name="thumbnail" type="file"></input>
+      <input id="file" name="file" type="file"></input>
       <input id="submit" type="submit"></input>
     </form>
 
     <div id="image_place"></div>
+
+    <h1>ドラッグ＆ドロップ</h1>
+    <div id="dropzone">
+        ここへ画像ファイルをドロップ
+    </div>
+  
   </body>
 
   <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-  <script type="text/javascript">
-// ファイルのアップロード
-$('#submit').click(function() {
-    // FormData の作成
-    var form = $('#ajaxform').get()[0];
-    var formData = new FormData(form);
-  
-    // FormData を送信
-    $.ajax('/upload', {
-        method: 'POST',
-        contentType: false,
-        processData: false,
-        data: formData,
-        error: function() {
-            console.log('error');
-        },
-        success: function(res) {
-            console.log(res);
-//            alert('success');
-            $('#image_place').append($('<img>').attr('src', res.fileName).attr('width', "100"));
-        }
-    });
- 
-    return false;
-});
-  </script>
+  <script type="text/javascript" src="javascripts/upload.js"></script>
 </html>
