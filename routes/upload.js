@@ -2,8 +2,6 @@ var util = require('util');
 
 var fs = require('fs');
 exports.post = function(req, res) {
-  console.log(util.inspect(req));
-
   var target_path, tmp_path;
   tmp_path = req.files.thumbnail.path;
   target_path = './uploads/' + req.files.thumbnail.name;
@@ -18,5 +16,6 @@ exports.post = function(req, res) {
       }
       res.send('File uploaded to: ' + target_path + ' - ' + req.files.thumbnail.size + ' bytes');
     });
+    res.send('File uploaded to: ' + target_path + ' - ' + req.files.thumbnail.size + ' bytes');
   });
 };
