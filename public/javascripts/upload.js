@@ -1,27 +1,26 @@
 $(function() {
+  /// for Ajax
   $('#submit').click(function() {
-    // FormData の作成
     var form = $('#ajaxform').get()[0];
     var formData = new FormData(form);
 
-    // FormData を送信
     $.ajax('/upload', {
       method: 'POST',
       contentType: false,
       processData: false,
       data: formData,
       error: function() {
-        console.log('error');
+        console.log('upload error');
       },
       success: function(res) {
-        console.log(res);
-        $('#image_place').append($('<img>').attr('src', res.fileName).attr('width', "100"));
+        addImage(res.fileName);
       }
     });
 
     return false;
   });
 
+  /// for D&D
   var $dropzone = $("#dropzone");
 
   // File API が使用できない場合は諦めます.
@@ -52,16 +51,24 @@ $(function() {
       processData: false,
       data: formData,
       error: function() {
-        console.log('アップロードに失敗しました');
+        console.log('upload error');
       },
       success: function(res) {
-        console.log('アップロードに成功しました');
-        $('#image_place').append($('<img>').attr('src', res.fileName).attr('width', "100"));
+        addImage(res.fileName);
       }
     });
 
     return false;
   }); 
+
+  function addImage(fileName){
+    $('#image_place').append(
+        $('<div>').addClass("col-xs-6 col-md-3").append(
+          $('<a>').attr("href","#").addClass("thumbnail").append(
+            $('<img>').attr('src', fileName))));
+  }
+
+
 });
 
 

@@ -9,28 +9,39 @@
   </head>
   <body>
     <div class="navbar navbar-default navbar-fixed-top hidden-xs" role="navigation">
-      <a class="navbar-brand" href="#">Uploadのテスト</a>
+      <a class="navbar-brand" href="#">Upload Image Practice</a>
     </div>
- 
-    <h1>通常のpost</h1>
-    <form method="post" enctype="multipart/form-data" action="/upload" class="form-inline">
-      <input type="file" name="file">
-      <input type="submit">
-    </form>
 
-    <h1>Ajax</h1>
-    <form id="ajaxform">
-      <input id="file" name="file" type="file"></input>
-      <input id="submit" type="submit"></input>
-    </form>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <h1>Normal Post</h1>
+          <form method="post" enctype="multipart/form-data" action="/upload" class="form-inline">
+            <input type="file" name="file">
+            <input class="btn btn-info" type="submit">
+          </form>
 
-    <div id="image_place"></div>
+          <h1>Ajax Post</h1>
+          <form id="ajaxform">
+            <input id="file" name="file" type="file"></input>
+            <input id="submit" class="btn btn-info" type="submit"></input>
+          </form>
 
-    <h1>ドラッグ＆ドロップ</h1>
-    <div id="dropzone">
-        ここへ画像ファイルをドロップ
+          <h1>Drag&Drop Post</h1>
+          <div id="dropzone" class="well">
+            <span class="glyphicon glyphicon-picture"></span>
+            Drop Image here.
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <h2>Uploaded Images</h2>
+          <div class="well">
+            <div id="image_place" class="row"></div>
+          </div>
+        </div>
+      </div>
     </div>
-  
   </body>
 
   <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>

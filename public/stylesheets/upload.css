@@ -1,8 +1,11 @@
 #dropzone {
   width: 300px;
-  height: 300px;
-  background-color: pink;
+  height: 200px;
   text-align: center;
-  line-height: 300px;
+  font-size: 20px;
+  line-height: 160px;
 }
 
+#image_place {
+  min-height: 500px;
+}
