@@ -3,28 +3,33 @@
   <head>
     <meta charset="utf-8">
     <title><%= title %></title>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <div class="navbar navbar-default navbar-fixed-top hidden-xs" role="navigation">
+      <a class="navbar-brand" href="#">Uploadのテスト</a>
+    </div>
+ 
     <h1>通常のpost</h1>
-    <form method="post" enctype="multipart/form-data" action="/upload">
+    <form method="post" enctype="multipart/form-data" action="/upload" class="form-inline">
       <input type="file" name="thumbnail">
       <input type="submit">
     </form>
 
-    
     <h2>Ajax</h2>
     <form id="ajaxform">
       <input id="file" name="thumbnail" type="file"></input>
       <input id="submit" type="submit"></input>
     </form>
+
+    <div id="image_place"></div>
   </body>
-  <script>
+
+  <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+  <script type="text/javascript">
 // ファイルのアップロード
 $('#submit').click(function() {
-  
     // FormData の作成
     var form = $('#ajaxform').get()[0];
     var formData = new FormData(form);
@@ -35,17 +40,16 @@ $('#submit').click(function() {
         contentType: false,
         processData: false,
         data: formData,
-//        dataType: 'json',
         error: function() {
             console.log('error');
         },
-        success: function() {
-            console.log('success');
-            alert('success');
+        success: function(res) {
+            console.log(res);
+//            alert('success');
+            $('#image_place').append($('<img>').attr('src', res.fileName).attr('width', "100"));
         }
     });
  
-    // false を返してデフォルトの動作をキャンセル
     return false;
 });
   </script>
